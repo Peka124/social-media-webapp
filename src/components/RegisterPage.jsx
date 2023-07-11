@@ -1,12 +1,16 @@
+import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const LoginPage = ({ addToken }) => {
+const RegisterPage = () => {
   const [userData, setUserData] = useState({
+    name: "",
     email: "",
     password: "",
   });
+
+  let navigate = useNavigate();
 
   function catchInput(e) {
     let newUserData = userData;
@@ -14,28 +18,18 @@ const LoginPage = ({ addToken }) => {
     setUserData(newUserData);
   }
 
-  let navigate = useNavigate();
-
-  function putLogin(e) {
+  function cathRegister(e) {
     e.preventDefault();
     axios
-      .post("api/login", userData)
+      .post("api/register", userData)
       .then((response) => {
         console.log(response.data);
-        if (response.data.succes === true) {
-          window.sessionStorage.setItem(
-            "auth_token",
-            response.data.access_token
-          );
-          addToken(response.data.access_token);
-        }
+        navigate("/login");
       })
       .catch((e) => {
         console.log(e);
       });
-    navigate("/");
   }
-
   return (
     <section
       className="vh-100"
@@ -47,24 +41,38 @@ const LoginPage = ({ addToken }) => {
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-md-9 col-lg-6 col-xl-5">
             <img
-              src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+              src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
               className="img-fluid"
               alt="Sample image"
             />
           </div>
           <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-            <form onSubmit={putLogin}>
+            <form onSubmit={cathRegister}>
+              <div className="form-outline mb-4">
+                <input
+                  type="name"
+                  id="form3Example2"
+                  className="form-control form-control-lg"
+                  placeholder="Please enter username"
+                  name="name"
+                  onInput={catchInput}
+                />
+                <label className="form-label" htmlFor="form3Example2">
+                  Username
+                </label>
+              </div>
+
               <div className="form-outline mb-4">
                 <input
                   type="email"
                   id="form3Example3"
                   className="form-control form-control-lg"
-                  placeholder="Enter a valid email address"
+                  placeholder="Please enter email"
                   name="email"
                   onInput={catchInput}
                 />
                 <label className="form-label" htmlFor="form3Example3">
-                  Email address
+                  Email
                 </label>
               </div>
 
@@ -91,14 +99,8 @@ const LoginPage = ({ addToken }) => {
                     paddingRight: 2.5 + "rem",
                   }}
                 >
-                  Login
+                  Register
                 </button>
-                <p className="small fw-bold mt-2 pt-1 mb-0">
-                  Don't have an account?{" "}
-                  <a href="/register" className="link-danger">
-                    Register
-                  </a>
-                </p>
               </div>
             </form>
           </div>
@@ -108,4 +110,4 @@ const LoginPage = ({ addToken }) => {
   );
 };
 
-export default LoginPage;
+export default RegisterPage;
