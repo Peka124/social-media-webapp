@@ -62,7 +62,7 @@ const NavBar = ({ token }) => {
                 href="/posts"
                 style={{ color: "white" }}
               >
-                <b>All Posts</b>
+                <b>Friends</b>
               </a>
               {token == null ? (
                 <a

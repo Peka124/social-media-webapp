@@ -40,13 +40,18 @@ const LoginPage = ({ addToken }) => {
     <section
       className="vh-100"
       style={{
-        paddingTop: 4.5 + "rem",
+        paddingTop: 40 + "px",
       }}
     >
       <div className="container-fluid h-custom">
         <div className="row d-flex justify-content-center align-items-center">
           <div className="col-md-8 col-lg-6 col-xl-4">
-            <form onSubmit={putLogin}>
+            <form onSubmit={putLogin} style={{ marginTop: 60 + "px" }}>
+              <h1>
+                <strong>
+                  <i>Hello again!</i>
+                </strong>
+              </h1>
               <div className="form-outline mt-4">
                 <input
                   type="email"

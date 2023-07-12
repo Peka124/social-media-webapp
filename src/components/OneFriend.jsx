@@ -2,8 +2,6 @@ import axios from "axios";
 import { FaMinus } from "react-icons/fa";
 
 const OneFriend = ({ dat }) => {
-  //
-  //
   const onDeleteClick = (e) => {
     if (!window.confirm("Are you sure you want to delete this user?")) {
       return;
@@ -18,9 +16,9 @@ const OneFriend = ({ dat }) => {
       <div className="card-body">
         <h5 className="card-title">{dat.username}</h5>
         <div>
-          <a href="/change" className="btn btn-success" onClick={onDeleteClick}>
+          <button className="btn btn-success" onClick={onDeleteClick}>
             Remove <FaMinus></FaMinus>
-          </a>
+          </button>
         </div>
       </div>
       <div className="card-footer text-muted">{dat.forum.osnivac}</div>
