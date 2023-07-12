@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Outlet } from "react-router-dom";
+import { BsFillPeopleFill } from "react-icons/bs";
 
 const NavBar = ({ token }) => {
   function handleLogout() {
@@ -26,9 +27,18 @@ const NavBar = ({ token }) => {
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <div className="container-fluid">
-          <a className="navbar-brand" href="/">
-            Blog App
+        <div className="container-fluid" style={{ backgroundColor: "blue" }}>
+          <a
+            className="navbar-brand"
+            href="/"
+            style={{
+              color: "white",
+              fontSize: 30 + "px",
+              marginLeft: 20 + "px",
+            }}
+          >
+            <b>Connectivity</b>
+            <BsFillPeopleFill></BsFillPeopleFill>
           </a>
           <button
             className="navbar-toggler"
@@ -46,26 +56,40 @@ const NavBar = ({ token }) => {
             id="navbarNavAltMarkup"
           >
             <div className="navbar-nav">
-              <a className="nav-link active" aria-current="page" href="/posts">
-                All Posts
+              <a
+                className="nav-link active"
+                aria-current="page"
+                href="/posts"
+                style={{ color: "white" }}
+              >
+                <b>All Posts</b>
               </a>
               {token == null ? (
-                <a className="nav-link" href="/login">
-                  Login
+                <a
+                  className="nav-link"
+                  href="/login"
+                  style={{ color: "white" }}
+                >
+                  <b>Login</b>
                 </a>
               ) : (
-                <a className="nav-link" href="/" onClick={handleLogout}>
-                  Logout
+                <a
+                  className="nav-link"
+                  href="/"
+                  onClick={handleLogout}
+                  style={{ color: "white" }}
+                >
+                  <b>Logout</b>
                 </a>
               )}
-              <a className="nav-link" href="#">
+              {/* <a className="nav-link" href="#" style={{ color: "white" }}>
                 Pricing
-              </a>
+              </a> */}
             </div>
           </div>
         </div>
       </nav>
-      {/* <Outlet /> */}
+      <Outlet />
     </div>
   );
 };
