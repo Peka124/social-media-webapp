@@ -18,9 +18,9 @@ const OneFriend = ({ dat }) => {
       <div className="card-body">
         <h5 className="card-title">{dat.username}</h5>
         <div>
-          <button onClick={onDeleteClick}>
+          <a href="/change" className="btn btn-success" onClick={onDeleteClick}>
             Remove <FaMinus></FaMinus>
-          </button>
+          </a>
         </div>
       </div>
       <div className="card-footer text-muted">{dat.forum.osnivac}</div>
