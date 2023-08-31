@@ -30,7 +30,7 @@ const NavBar = ({ token }) => {
         <div className="container-fluid" style={{ backgroundColor: "blue" }}>
           <a
             className="navbar-brand"
-            href="/"
+            href="/home"
             style={{
               color: "white",
               fontSize: 30 + "px",
@@ -59,7 +59,7 @@ const NavBar = ({ token }) => {
               <a
                 className="nav-link active"
                 aria-current="page"
-                href="/posts"
+                href="/home"
                 style={{ color: "white" }}
               >
                 <b>Friends</b>
@@ -75,16 +75,13 @@ const NavBar = ({ token }) => {
               ) : (
                 <a
                   className="nav-link"
-                  href="/"
-                  onClick={handleLogout}
+                  href="/login"
+                  onClick={(e) => handleLogout(e)}
                   style={{ color: "white" }}
                 >
                   <b>Logout</b>
                 </a>
               )}
-              {/* <a className="nav-link" href="#" style={{ color: "white" }}>
-                Pricing
-              </a> */}
             </div>
           </div>
         </div>

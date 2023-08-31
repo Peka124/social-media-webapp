@@ -1,4 +1,4 @@
-import OneFriend from "./OneFriend";
+import OneFriendUser from "./OneFriendUser";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { ImSad2 } from "react-icons/im";
@@ -6,7 +6,7 @@ import Search from "./Search";
 import Sort from "./Sort";
 import React from "react";
 
-const FriendsPage = () => {
+const FriendsPageUser = () => {
   const [clans, setClans] = useState([]);
 
   useEffect(() => {
@@ -25,10 +25,6 @@ const FriendsPage = () => {
       .catch((error) => {
         console.error("Error fetching clans:", error);
       });
-  };
-
-  const handleDelete = (e) => {
-    setClans(clans.filter((clan) => clan.id !== e));
   };
 
   const [data, setData] = useState();
@@ -62,7 +58,7 @@ const FriendsPage = () => {
           <Search></Search>
           {/* <Sort></Sort> */}
           {data.map((dat) => (
-            <OneFriend dat={dat} key={dat.id} onDelete={handleDelete} />
+            <OneFriendUser dat={dat} key={dat.id} />
           ))}
         </div>
       )}
@@ -70,4 +66,4 @@ const FriendsPage = () => {
   );
 };
 
-export default FriendsPage;
+export default FriendsPageUser;

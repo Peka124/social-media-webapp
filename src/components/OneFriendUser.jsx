@@ -1,21 +1,6 @@
 import axios from "axios";
 
-const OneFriend = ({ dat, onDelete }) => {
-  //******************************************************************************* */
-  const handleDelete = () => {
-    console.log("Brisem clana " + dat.id);
-    axios
-      .delete(`api/clan/${dat.id}`)
-      .then((response) => {
-        console.log(response.data);
-        onDelete(dat.id);
-        window.location.reload();
-      })
-      .catch((error) => {
-        console.error("Error deleting friend:", error);
-      });
-  };
-
+const OneFriendUser = ({ dat }) => {
   function openForm(e) {
     let ne = document.createElement("p");
 
@@ -75,19 +60,9 @@ const OneFriend = ({ dat, onDelete }) => {
         <button className="close-button btn btn-secondary" onClick={closeForm}>
           Close Forum
         </button>
-
-        <button
-          className="btn btn-danger"
-          style={{ marginLeft: 25 + "px" }}
-          onClick={() => {
-            handleDelete();
-          }}
-        >
-          Remove
-        </button>
       </div>
     </div>
   );
 };
 
-export default OneFriend;
+export default OneFriendUser;

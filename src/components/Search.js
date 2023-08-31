@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import OneFriend from "./OneFriend";
 import { useState, useEffect } from "react";
 
 const Search = () => {
@@ -14,20 +15,16 @@ const Search = () => {
       });
     }
   }, [data1]);
-  //
-  //
-  //dat1.imePrezime.toLowerCase().includes(term.toLowerCase());
-  //
-  //
+
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
   const handleSearch = (e) => {
     const term = e.target.value;
-    console.log(data1);
+
     setSearchTerm(term);
 
-    const results = data1.filter((dat1) => dat1.imePrezime.includes(term));
+    let results = data1.filter((dat1) => dat1.imePrezime.includes(term));
     setSearchResults(results);
   };
 
@@ -38,13 +35,14 @@ const Search = () => {
         placeholder="Search"
         value={searchTerm}
         onChange={handleSearch}
+        style={{ marginBottom: 20 + "px" }}
       />
-
-      <ul>
+      <div>
         {searchResults.map((dat) => (
-          <li key={dat.id}>{dat.imePrezime}</li>
+          <OneFriend dat={dat} key={dat.id} />
         ))}
-      </ul>
+        <hr></hr>
+      </div>
     </div>
   );
 };

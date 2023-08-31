@@ -22,16 +22,20 @@ const LoginPage = ({ addToken }) => {
       .post("api/login", userData)
       .then((response) => {
         console.log(response);
+
         if (response.statusText === "OK") {
-          alert("Setovan token");
           window.sessionStorage.setItem("auth_token", response.data.token);
           addToken(response.data.token);
+          console.log(response.data.korisnik.id);
+          alert("Welcome to Connectivity!");
+          if (parseInt(response.data.korisnik.id) == 1) navigate("/home");
+          else navigate("/home1");
         }
       })
       .catch((e) => {
         console.log(e);
+        alert("You're didn't put correct data");
       });
-    navigate("/");
   }
 
   return (
@@ -44,7 +48,10 @@ const LoginPage = ({ addToken }) => {
       <div className="container-fluid h-custom">
         <div className="row d-flex justify-content-center align-items-center">
           <div className="col-md-8 col-lg-6 col-xl-4">
-            <form onSubmit={putLogin} style={{ marginTop: 60 + "px" }}>
+            <form
+              onSubmit={(e) => putLogin(e)}
+              style={{ marginTop: 60 + "px" }}
+            >
               <h1>
                 <strong>
                   <i>Hello again!</i>
@@ -56,7 +63,7 @@ const LoginPage = ({ addToken }) => {
                   className="form-control form-control-lg"
                   placeholder="Enter email address..."
                   name="email"
-                  onInput={catchInput}
+                  onInput={(e) => catchInput(e)}
                 />
                 <label
                   className="form-label"
@@ -72,7 +79,7 @@ const LoginPage = ({ addToken }) => {
                   className="form-control form-control-lg"
                   placeholder="Enter password..."
                   name="password"
-                  onInput={catchInput}
+                  onInput={(e) => catchInput(e)}
                 />
                 <label
                   className="form-label"
@@ -91,7 +98,7 @@ const LoginPage = ({ addToken }) => {
                   Login
                 </button>
                 <p className="small fw-bold">
-                  Already have account?{" "}
+                  Don't have account?{" "}
                   <a
                     href="/register"
                     className="link-submit"

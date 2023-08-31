@@ -103,6 +103,16 @@ const RegisterPage = () => {
                 >
                   Register
                 </button>
+                <p className="small fw-bold">
+                  Alredy have accout?{" "}
+                  <a
+                    href="/login"
+                    className="link-submit"
+                    style={{ textDecoration: "none" }}
+                  >
+                    Sign in here.
+                  </a>
+                </p>
               </div>
             </form>
           </div>
