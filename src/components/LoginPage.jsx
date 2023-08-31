@@ -21,13 +21,11 @@ const LoginPage = ({ addToken }) => {
     axios
       .post("api/login", userData)
       .then((response) => {
-        console.log(response.data);
-        if (response.data.succes === true) {
-          window.sessionStorage.setItem(
-            "auth_token",
-            response.data.access_token
-          );
-          addToken(response.data.access_token);
+        console.log(response);
+        if (response.statusText === "OK") {
+          alert("Setovan token");
+          window.sessionStorage.setItem("auth_token", response.data.token);
+          addToken(response.data.token);
         }
       })
       .catch((e) => {

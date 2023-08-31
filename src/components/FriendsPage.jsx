@@ -22,6 +22,9 @@ const FriendsPage = () => {
   const [data, setData] = useState();
   useEffect(() => {
     if (data == null) {
+      console.log(window.sessionStorage);
+      let token = window.sessionStorage.getItem("auth_token");
+      axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
       axios.get("api/clan").then((response) => {
         console.log(response.data);
         setData(response.data.data);

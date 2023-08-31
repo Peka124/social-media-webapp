@@ -6,9 +6,11 @@ const Search = () => {
   const [data1, setData] = useState();
   useEffect(() => {
     if (data1 == null) {
+      let token = window.sessionStorage.getItem("auth_token");
+      axios.defaults.headers.common = { Authorization: `Bearer ${token}` };
       axios.get("api/clan").then((response) => {
         console.log(response.data);
-        setData(response.data.data1);
+        setData(response.data.data);
       });
     }
   }, [data1]);
@@ -22,9 +24,10 @@ const Search = () => {
 
   const handleSearch = (e) => {
     const term = e.target.value;
+    console.log(data1);
     setSearchTerm(term);
 
-    const results = data1.filter((dat1) => dat1.includes(term));
+    const results = data1.filter((dat1) => dat1.imePrezime.includes(term));
     setSearchResults(results);
   };
 
