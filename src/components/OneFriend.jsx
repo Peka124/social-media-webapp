@@ -50,12 +50,7 @@ const OneFriend = ({ dat, onDelete }) => {
     >
       <div className="submain-div">
         <div style={{ textAlign: "center" }}>
-          <h3
-            //className="col-md-8 col-lg-6 col-xl-4 card text-center"
-            className="title"
-          >
-            {dat.imePrezime}
-          </h3>
+          <h3 className="title">{dat.imePrezime}</h3>
           <h4 className="col-md-8 col-lg-4 col-xl-6 text-center username">
             {dat.username}
           </h4>

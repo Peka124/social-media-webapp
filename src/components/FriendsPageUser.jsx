@@ -3,7 +3,6 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { ImSad2 } from "react-icons/im";
 import Search from "./Search";
-import Sort from "./Sort";
 import React from "react";
 
 const FriendsPageUser = () => {

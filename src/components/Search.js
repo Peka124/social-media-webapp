@@ -26,6 +26,9 @@ const Search = () => {
 
     let results = data1.filter((dat1) => dat1.imePrezime.includes(term));
     setSearchResults(results);
+    if (term == "") {
+      setSearchResults(null);
+    }
   };
 
   return (
@@ -38,10 +41,11 @@ const Search = () => {
         style={{ marginBottom: 20 + "px" }}
       />
       <div>
-        {searchResults.map((dat) => (
-          <OneFriend dat={dat} key={dat.id} />
-        ))}
-        <hr></hr>
+        {searchResults != null ? (
+          searchResults.map((dat) => <OneFriend dat={dat} key={dat.id} />)
+        ) : (
+          <div></div>
+        )}
       </div>
     </div>
   );

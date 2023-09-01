@@ -3,7 +3,6 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { ImSad2 } from "react-icons/im";
 import Search from "./Search";
-import Sort from "./Sort";
 import React from "react";
 
 const FriendsPage = () => {
@@ -45,11 +44,30 @@ const FriendsPage = () => {
     }
   }, [data]);
 
+  const handleSortId = (e) => {
+    let sId = data.sort((a, b) => {
+      console.log(`comparing ${a.id},${b.id}`);
+      return a.id < b.id ? 1 : a.id === b.id ? 0 : -1;
+    });
+    setData(sId);
+    setClans(sId);
+  };
+  const handleSortName = () => {
+    let sId = data.sort((a, b) => {
+      console.log(`comparing ${a.imePrezime},${b.imePrezime}`);
+      return a.imePrezime > b.imePrezime
+        ? 1
+        : a.imePrezime === b.imePrezime
+        ? 0
+        : -1;
+    });
+    setData(sId);
+    setClans(sId);
+  };
+
   return (
     <div>
       <h2>Friends</h2>
-      {/* <Search></Search> */}
-      {console.log(Search)}
       {data == null ? (
         <h2>
           You don't have friends{" "}
@@ -60,7 +78,27 @@ const FriendsPage = () => {
       ) : (
         <div>
           <Search></Search>
-          {/* <Sort></Sort> */}
+          <div style={{ display: "inline" }}>
+            <button
+              className="btn btn-primary"
+              onClick={() => {
+                handleSortId(data.id);
+              }}
+            >
+              Sort by ID
+            </button>
+
+            <button
+              style={{ marginLeft: 10 + "px" }}
+              className="btn btn-primary"
+              onClick={() => {
+                handleSortName(data.imePrezime);
+              }}
+            >
+              Sort by Name
+            </button>
+          </div>
+          <hr></hr>
           {data.map((dat) => (
             <OneFriend dat={dat} key={dat.id} onDelete={handleDelete} />
           ))}
